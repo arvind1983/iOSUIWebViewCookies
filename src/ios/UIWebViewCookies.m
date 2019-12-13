@@ -116,7 +116,7 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
--(void)DeleteAllCookies:(CDVInvokedUrlCommand*)command
+-(void)deleteAllCookies:(CDVInvokedUrlCommand*)command
 {
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     if (cookies != nil && cookies.count > 0) {
