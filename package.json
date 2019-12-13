@@ -3,14 +3,14 @@
   "version": "0.0.2",
   "description": "UIWebViewCookies Save / load http cookies Cordova Plugin.",
   "cordova": {
-    "id": "com-orica-WebViewCookies-Cookies",
+    "id": "com-orica-webviewcookies-cookies",
     "platforms": [
       "ios"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arvind1983/iosWebViewCookies.git"
+    "url": "git+https://github.com/arvind1983/iOSUIWebViewCookies.git"
   },
   "keywords": [
     "cordova",
@@ -21,7 +21,7 @@
   "author": "Venkat",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arvind1983/iosWebViewCookies/issues"
+    "url": "https://github.com/arvind1983/iOSUIWebViewCookies/issues"
   },
-  "homepage": "https://github.com/arvind1983/iosWebViewCookies#readme"
+  "homepage": "https://github.com/arvind1983/iOSUIWebViewCookies#readme"
 }
