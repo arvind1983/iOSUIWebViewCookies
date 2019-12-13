@@ -118,6 +118,7 @@
 
 -(void)deleteAllCookies:(CDVInvokedUrlCommand*)command
 {
+    CDVPluginResult* pluginResult = nil;
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     if (cookies != nil && cookies.count > 0) {
        for (NSHTTPCookie *cookie in cookies) {
@@ -125,6 +126,10 @@
        }
        [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end
