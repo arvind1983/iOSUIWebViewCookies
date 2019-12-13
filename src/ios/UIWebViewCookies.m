@@ -72,7 +72,7 @@
     {
         UIAlertView *toast = [
             [UIAlertView alloc] initWithTitle:@"Cookies"
-            message:@"Found cookies!"
+            message:@"Found UIWebView cookies!"
             delegate:nil
             cancelButtonTitle:nil
             otherButtonTitles:nil, nil];
