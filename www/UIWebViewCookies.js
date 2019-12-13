@@ -16,7 +16,7 @@ exports.loadHTTPCookies = function(success, error) {
     exec(success, error, "UIWebViewCookies", "loadHTTPCookies");
 };
 
-exports.DeleteAllCookies = function(success, error) {
+exports.deleteAllCookies = function(success, error) {
     exec(success, error, "UIWebViewCookies", "DeleteAllCookies");
 };
 
