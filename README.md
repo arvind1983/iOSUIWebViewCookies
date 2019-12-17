@@ -10,12 +10,12 @@ Config.xml <plugin name="cordova-plugin-example" source="git" spec="https://gith
 
 //onResume
 
-iOSUIWebViewPlugin setTimeout(function() { uiwebviewcookies.loadHTTPCookies(null,null); }, 0);
+setTimeout(function() { uiwebviewcookies.loadHTTPCookies(null,null); }, 0);
 
 // onDeviceReady 
 
-iOSUIWebViewPlugin setTimeout(function() { uiwebviewcookies.loadHTTPCookies(null,null); }, 0);
+setTimeout(function() { uiwebviewcookies.loadHTTPCookies(null,null); }, 0);
 
 // Save during app init
 
-iOSUIWebViewPlugin setTimeout(function() { uiwebviewcookies.saveHTTPCookies(null,null); }, 0);
+setTimeout(function() { uiwebviewcookies.saveHTTPCookies(null,null); }, 0);
