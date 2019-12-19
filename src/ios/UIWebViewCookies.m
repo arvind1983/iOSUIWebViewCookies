@@ -89,9 +89,9 @@
 
         [toast show]; // temporarily hide the toast
         
-        /*dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [toast dismissWithClickedButtonIndex:0 animated:YES];
-        });*/
+        });
     }
        
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
