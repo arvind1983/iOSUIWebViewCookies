@@ -58,7 +58,7 @@
 -(void)loadHTTPCookies:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    NSInteger *cookieCount;
+    NSInteger *cookieCount = 0;
     NSMutableString * aTitleString = [NSMutableString stringWithFormat:@"Found %d", cookieCount];    // does not need to be released. Needs to be retained if you need to keep use it after the current function.
     
     NSMutableString *myCookie = [NSMutableString stringWithString:@"Cookies: "];
@@ -134,7 +134,12 @@
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
-    UIAlertView *toast = [
+    
+    //Additional not tested
+    
+    [[NSURLSession sharedSession] resetWithCompletionHandler:^{
+        // Do something once it's done.
+        UIAlertView *toast = [
             [UIAlertView alloc] initWithTitle:@"Deleted Cookies"
             message:@"Deleting cookies!"
             delegate:nil
@@ -146,7 +151,8 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [toast dismissWithClickedButtonIndex:0 animated:YES];
         });
-
+    }];
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
