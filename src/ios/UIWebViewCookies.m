@@ -61,7 +61,6 @@
     //NSString *myCookie;
     NSMutableString *myCookie = [NSMutableString stringWithString:@"Cookies: "];
     NSMutableArray* cookieDictionary = [[NSUserDefaults standardUserDefaults] valueForKey:@"cookieArray"];
-
     for (int i=0; i < cookieDictionary.count; i++)
     {
         NSMutableDictionary* cookieDictionary1 = [[NSUserDefaults standardUserDefaults] valueForKey:[cookieDictionary objectAtIndex:i]];
