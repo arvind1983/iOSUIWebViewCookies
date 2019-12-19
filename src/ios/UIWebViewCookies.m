@@ -66,8 +66,8 @@
         NSMutableDictionary* cookieDictionary1 = [[NSUserDefaults standardUserDefaults] valueForKey:[cookieDictionary objectAtIndex:i]];
         NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDictionary1];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-        myCookie = [[cookieDictionary1 valueForKey:@"name"] componentsJoinedByString:@", "];
-        //Cookie = [[cookie.name] componentsJoinedByString:@", "];
+        myCookie = [[cookieDictionary1 valueForKey:@"NSHTTPCookieName"] componentsJoinedByString:@", "];
+        //myCookie = @"test";
     }
     
     // Alert cookies found
