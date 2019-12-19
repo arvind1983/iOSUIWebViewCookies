@@ -129,17 +129,22 @@
 -(void)deleteAllCookies:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    //NSString *myMessage = [NSString stringWithFormat:@"%@ %@", "Cookies deleted: ", cookieCount];
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    /*NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
-    }
-    
+    }*/
+        
     //Additional not tested
-    
-    [[NSURLSession sharedSession] resetWithCompletionHandler:^{
-        // Do something once it's done.
-        UIAlertView *toast = [
+    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:nil];
+    [NSURLCache setSharedURLCache:sharedCache];
+
+    //Clear All Cookies
+    for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+    }
+        
+    UIAlertView *toast = [
             [UIAlertView alloc] initWithTitle:@"Deleted Cookies"
             message:@"Deleting cookies!"
             delegate:nil
@@ -151,7 +156,6 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [toast dismissWithClickedButtonIndex:0 animated:YES];
         });
-    }];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
