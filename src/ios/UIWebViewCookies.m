@@ -67,7 +67,7 @@
         NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDictionary1];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
         //myCookie = [[cookieDictionary1 valueForKey:@"name"] componentsJoinedByString:@", "];
-        myCookie = [[cookie.name] componentsJoinedByString:@", "];
+        myCookie = [[cookie] componentsJoinedByString:@", "];
     }
     
     // Alert cookies found
