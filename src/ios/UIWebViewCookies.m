@@ -58,8 +58,11 @@
 -(void)loadHTTPCookies:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    //NSString *myCookie;
+    NSInteger *cookieCount;
+    NSMutableString * aTitleString = [NSMutableString stringWithFormat:@"Found %d", cookieCount];    // does not need to be released. Needs to be retained if you need to keep use it after the current function.
+    
     NSMutableString *myCookie = [NSMutableString stringWithString:@"Cookies: "];
+    
     NSMutableArray* cookieDictionary = [[NSUserDefaults standardUserDefaults] valueForKey:@"cookieArray"];
     for (int i=0; i < cookieDictionary.count; i++)
     {
@@ -71,12 +74,13 @@
         myCookie = [myCookie stringByAppendingString:@", "];
         //myCookie = @"test";
     }
-    
+    cookieCount = cookieDictionary.count;
+    [aTitleString appendFormat:@"cookies: %d", cookieCount];
     // Alert cookies found
     if(cookieDictionary.count>0)
     {
         UIAlertView *toast = [
-            [UIAlertView alloc] initWithTitle:@"Cookies"
+            [UIAlertView alloc] initWithTitle:aTitleString
             //message:@"Found UIWebView cookies!"
             message:myCookie
             delegate:nil
