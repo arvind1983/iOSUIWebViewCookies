@@ -58,7 +58,8 @@
 -(void)loadHTTPCookies:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    NSString *myCookie;
+    //NSString *myCookie;
+    NSMutableString *myCookie = [NSMutableString stringWithString:@"Cookies: "];
     NSMutableArray* cookieDictionary = [[NSUserDefaults standardUserDefaults] valueForKey:@"cookieArray"];
 
     for (int i=0; i < cookieDictionary.count; i++)
@@ -67,8 +68,7 @@
         NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDictionary1];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
         //myCookie = [[cookieDictionary1 valueForKey:@"NSHTTPCookieName"] componentsJoinedByString:@", "];
-        NSString *myVal = [cookieDictionary1 valueForKey:@"NSHTTPCookieName"];
-        myCookie = [myCookie stringByAppendingString:myVal];
+        myCookie = [myCookie stringByAppendingString:cookie.name];
         //myCookie = @"test";
     }
     
