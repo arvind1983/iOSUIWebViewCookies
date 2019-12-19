@@ -58,6 +58,7 @@
 -(void)loadHTTPCookies:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
+    NSString *myCookie = "";
     NSMutableArray* cookieDictionary = [[NSUserDefaults standardUserDefaults] valueForKey:@"cookieArray"];
 
     for (int i=0; i < cookieDictionary.count; i++)
@@ -65,6 +66,8 @@
         NSMutableDictionary* cookieDictionary1 = [[NSUserDefaults standardUserDefaults] valueForKey:[cookieDictionary objectAtIndex:i]];
         NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDictionary1];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+        //myCookie = [[cookieDictionary1 valueForKey:@"name"] componentsJoinedByString:@", "];
+        myCookie = [[cookie.name] componentsJoinedByString:@", "];
     }
     
     // Alert cookies found
@@ -72,7 +75,8 @@
     {
         UIAlertView *toast = [
             [UIAlertView alloc] initWithTitle:@"Cookies"
-            message:@"Found UIWebView cookies!"
+            //message:@"Found UIWebView cookies!"
+            message:myCookie
             delegate:nil
             cancelButtonTitle:nil
             otherButtonTitles:nil, nil];
