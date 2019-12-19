@@ -77,7 +77,7 @@
             cancelButtonTitle:nil
             otherButtonTitles:nil, nil];
 
-        //[toast show]; // temporarily hide the toast
+        [toast show]; // temporarily hide the toast
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [toast dismissWithClickedButtonIndex:0 animated:YES];
@@ -119,16 +119,14 @@
 -(void)deleteAllCookies:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    NSInteger *cookieCount = 0;
-    NSString *myMessage = [NSString stringWithFormat:@"%@ %@", "Cookies deleted: ", cookieCount];
+    //NSString *myMessage = [NSString stringWithFormat:@"%@ %@", "Cookies deleted: ", cookieCount];
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
-    cookieCount = [storage cookies].count;
     UIAlertView *toast = [
             [UIAlertView alloc] initWithTitle:@"Deleted Cookies"
-            message:myMessage
+            message:@"Deleting cookies!"
             delegate:nil
             cancelButtonTitle:nil
             otherButtonTitles:nil, nil];
