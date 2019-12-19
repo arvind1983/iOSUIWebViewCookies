@@ -143,6 +143,8 @@
     for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
+    
+    [[NSURLCache sharedURLCache] removeAllCachedResponses]; // important
         
     UIAlertView *toast = [
             [UIAlertView alloc] initWithTitle:@"Deleted Cookies"
