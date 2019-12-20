@@ -196,7 +196,7 @@
     cookieCount = cookieDictionary.count;
     [aTitleString appendFormat:@"cookies: %d", cookieCount];
     
-    // Clear NSUserdefaults
+    // Clear NSUserdefaults standardUserDefaults to remove "cookieArray" and others
     
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
