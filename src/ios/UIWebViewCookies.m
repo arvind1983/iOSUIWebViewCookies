@@ -196,6 +196,12 @@
     cookieCount = cookieDictionary.count;
     [aTitleString appendFormat:@"cookies: %d", cookieCount];
     
+    // Clear NSUserdefaults
+    
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     //Remove the localstorage db
     NSString *path = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Backups"] stringByAppendingPathComponent:@"localstorage.appdata.db"];
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
