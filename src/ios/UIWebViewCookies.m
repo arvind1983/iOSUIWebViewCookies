@@ -144,7 +144,19 @@
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
     
-    [[NSURLCache sharedURLCache] removeAllCachedResponses]; // important
+    //Remove the localstorage db
+    NSString *path = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Backups"] stringByAppendingPathComponent:@"localstorage.appdata.db"];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+
+    //Also remove the cached versions
+    path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    for (NSString *string in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil]) {
+        if ([[string pathExtension] isEqualToString:@"localstorage"]) {
+            [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+        }
+    }
+    
+    [[NSURLCache sharedURLCache] removeAllCachedResponses]; // remove all cache responses
         
     UIAlertView *toast = [
             [UIAlertView alloc] initWithTitle:@"Deleted Cookies"
