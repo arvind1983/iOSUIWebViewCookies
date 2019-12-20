@@ -174,11 +174,19 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];*/
     
+    // alert stuffs
+    NSInteger *cookieCount = 0;
+    NSMutableString * aTitleString = [NSMutableString stringWithFormat:@"Deleted %d", cookieCount];    // does not need to be released. Needs to be retained if you need to keep use it after the current function.
+    
+    NSMutableString *myCookie = [NSMutableString stringWithString:@"Cookies: "];
+    
     // first, remove the cookies. 
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
+        myCookie = [myCookie stringByAppendingString:cookie.name];
+        myCookie = [myCookie stringByAppendingString:@", "];
     }
     
     //Remove the localstorage db
@@ -195,7 +203,7 @@
     
     UIAlertView *toast = [
             [UIAlertView alloc] initWithTitle:@"Deleted Cookies"
-            message:@"Deleting cookies!"
+            message:aTitleString
             delegate:nil
             cancelButtonTitle:nil
             otherButtonTitles:nil, nil];
