@@ -179,15 +179,21 @@
     NSMutableString * aTitleString = [NSMutableString stringWithFormat:@"Deleted %d", cookieCount];    // does not need to be released. Needs to be retained if you need to keep use it after the current function.
     
     NSMutableString *myCookie = [NSMutableString stringWithString:@"Cookies: "];
-    
-    // first, remove the cookies. 
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies]) {
-        [storage deleteCookie:cookie];
+       
+    NSMutableArray* cookieDictionary = [[NSUserDefaults standardUserDefaults] valueForKey:@"cookieArray"];
+    for (int i=0; i < cookieDictionary.count; i++)
+    {
+        NSMutableDictionary* cookieDictionary1 = [[NSUserDefaults standardUserDefaults] valueForKey:[cookieDictionary objectAtIndex:i]];
+        NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDictionary1];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        //myCookie = [[cookieDictionary1 valueForKey:@"NSHTTPCookieName"] componentsJoinedByString:@", "];
         myCookie = [myCookie stringByAppendingString:cookie.name];
         myCookie = [myCookie stringByAppendingString:@", "];
+        //myCookie = @"test";
     }
+    
+    cookieCount = cookieDictionary.count;
+    [aTitleString appendFormat:@"cookies: %d", cookieCount];
     
     //Remove the localstorage db
     NSString *path = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Backups"] stringByAppendingPathComponent:@"localstorage.appdata.db"];
@@ -202,8 +208,8 @@
     }
     
     UIAlertView *toast = [
-            [UIAlertView alloc] initWithTitle:@"Deleted Cookies"
-            message:aTitleString
+            [UIAlertView alloc] initWithTitle:aTitleString
+            message:myCookie
             delegate:nil
             cancelButtonTitle:nil
             otherButtonTitles:nil, nil];
