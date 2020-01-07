@@ -95,7 +95,8 @@
     }
        
     //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary : cookieDictionary];
+    NSString *testName = "";
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString : testName];
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
