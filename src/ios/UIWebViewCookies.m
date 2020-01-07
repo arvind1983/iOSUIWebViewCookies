@@ -95,7 +95,7 @@
     }
        
     //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    NSString *testName = @"testname"
+    NSString *testName = @"testname";
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString : testName];
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
