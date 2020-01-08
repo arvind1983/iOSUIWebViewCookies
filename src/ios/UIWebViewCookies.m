@@ -94,7 +94,7 @@
         });
     }
        
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:cookieDictionary];
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
