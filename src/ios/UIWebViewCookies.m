@@ -94,9 +94,7 @@
         });
     }
        
-    //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    NSString *testName = @"testname";
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:testName];
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
@@ -196,7 +194,7 @@
 {
  CDVPluginResult *pluginResult = nil;
     NSString *param = @"test params";
-     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:checkOpenDevice];
+     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:param];
        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }   
 }
