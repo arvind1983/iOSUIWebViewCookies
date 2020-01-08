@@ -192,4 +192,13 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+-(void)testParams:(CDVInvokedUrlCommand*)command
+{
+ CDVPluginResult *pluginResult = nil;
+    NSString *param = @"test params";
+     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:checkOpenDevice];
+       [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }   
+}
+
 @end
