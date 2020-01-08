@@ -9,4 +9,5 @@
 - (void)saveHTTPCookies:(CDVInvokedUrlCommand*)command;
 - (void)loadHTTPCookies:(CDVInvokedUrlCommand*)command;
 - (void)deleteAllCookies:(CDVInvokedUrlCommand*)command;
+- (void)testParams:(CDVInvokedUrlCommand*)command;
 @end
