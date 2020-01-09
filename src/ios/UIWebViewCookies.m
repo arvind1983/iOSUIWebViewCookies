@@ -63,16 +63,24 @@
     
     NSMutableString *myCookie = [NSMutableString stringWithString:@"Cookies: "];
     
+    // Dictionary to store cookie name and values temporarily and pass to JS table
+    NSMutableDictionary *cookieJSDictionary = [NSMutableDictionary alloc] init];
+    
     NSMutableArray* cookieDictionary = [[NSUserDefaults standardUserDefaults] valueForKey:@"cookieArray"];
     for (int i=0; i < cookieDictionary.count; i++)
     {
         NSMutableDictionary* cookieDictionary1 = [[NSUserDefaults standardUserDefaults] valueForKey:[cookieDictionary objectAtIndex:i]];
         NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDictionary1];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+        
         //myCookie = [[cookieDictionary1 valueForKey:@"NSHTTPCookieName"] componentsJoinedByString:@", "];
         //myCookie = [myCookie stringByAppendingString:cookie.name];
         NSString* cookieName = [cookie valueForKey:@"name"];
         NSString* cookieVal = [cookie valueForKey:@"value"];
+        
+        [cookieJSDictionary setObject:@"cookieName" forKey:cookieName];
+        [cookieJSDictionary setObject:@"cookieValue" forKey:cookieVal];
+         
         myCookie = [myCookie stringByAppendingString:cookieName];
         myCookie = [myCookie stringByAppendingString:@", "];
         myCookie = [myCookie stringByAppendingString:cookieVal];
@@ -98,7 +106,8 @@
         });
     }
        
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:cookieDictionary];
+    //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:cookieDictionary];
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:cookieJSDictionary];
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
