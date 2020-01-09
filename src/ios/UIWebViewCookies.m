@@ -70,9 +70,13 @@
         NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDictionary1];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
         //myCookie = [[cookieDictionary1 valueForKey:@"NSHTTPCookieName"] componentsJoinedByString:@", "];
-        myCookie = [myCookie stringByAppendingString:cookie.name];
-        myCookie = [myCookie stringByAppendingString:@", "]; 
-                //myCookie = @"test";
+        //myCookie = [myCookie stringByAppendingString:cookie.name];
+        NSString* cookieName = [cookie valueForKey:@"name"];
+        NSString* cookieVal = [cookie valueForKey:@"value"];
+        myCookie = [myCookie stringByAppendingString:cookieName];
+        myCookie = [myCookie stringByAppendingString:@", "];
+        myCookie = [myCookie stringByAppendingString:cookieVal];
+        myCookie = [myCookie stringByAppendingString:@", "];
     }
     cookieCount = cookieDictionary.count;
     [aTitleString appendFormat:@"cookies: %d", cookieCount];
