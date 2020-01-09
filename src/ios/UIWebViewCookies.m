@@ -64,7 +64,7 @@
     NSMutableString *myCookie = [NSMutableString stringWithString:@"Cookies: "];
     
     // Dictionary to store cookie name and values temporarily and pass to JS table
-    NSMutableDictionary *cookieJSDictionary = [NSMutableDictionary alloc] init];
+    NSMutableDictionary *cookieJSDictionary = [[NSMutableDictionary alloc] init];
     
     NSMutableArray* cookieDictionary = [[NSUserDefaults standardUserDefaults] valueForKey:@"cookieArray"];
     for (int i=0; i < cookieDictionary.count; i++)
