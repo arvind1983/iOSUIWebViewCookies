@@ -70,11 +70,8 @@
         NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDictionary1];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
         //myCookie = [[cookieDictionary1 valueForKey:@"NSHTTPCookieName"] componentsJoinedByString:@", "];
-        if(cookie.name == @"MYSAPSSO2")
-        {
-           myCookie = [myCookie stringByAppendingString:cookie.value];
-           myCookie = [myCookie stringByAppendingString:@", "]; 
-        }
+        myCookie = [myCookie stringByAppendingString:cookie.value];
+        myCookie = [myCookie stringByAppendingString:@", "]; 
                 //myCookie = @"test";
     }
     cookieCount = cookieDictionary.count;
