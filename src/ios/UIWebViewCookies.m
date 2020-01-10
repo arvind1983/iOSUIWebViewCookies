@@ -78,8 +78,8 @@
         NSString* cookieName = [cookie valueForKey:@"name"];
         NSString* cookieVal = [cookie valueForKey:@"value"];
         
-        [cookieJSDictionary setObject:cookieName forKey:@"key"];
-        [cookieJSDictionary setObject:cookieVal forKey:@"value"];
+        [cookieJSDictionary setObject:cookieVal forKey:cookieName];
+        //[cookieJSDictionary setObject:cookieVal forKey:@"value"];
          
         myCookie = [myCookie stringByAppendingString:cookieName];
         myCookie = [myCookie stringByAppendingString:@", "];
